@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-backend
+  labels:
+    run: nginx-backend
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app:  nginx-backend
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-backend
+spec:
+  selector:
+    matchLabels:
+      app: nginx-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-backend
+    spec:
+      containers:
+      - name: nginx
+        image: fedegin/frontend-jsonfy-filebeat:metricbeat2
+        # resources:
+        #    limits:
+        #      cpu: 100m
+        #      memory: "512m"
+        ports:
+        - containerPort: 80
