@@ -30,6 +30,7 @@ spec:
       containers:
       - name: nginx
         image: fedegin/frontend-jsonfy-filebeat:metricbeat1
+        imagePullPolicy: Always
         # resources:
         #    limits:
         #      cpu: 100m

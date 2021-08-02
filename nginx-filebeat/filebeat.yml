@@ -18,6 +18,8 @@ filebeat:
     -
       paths:
         - "/var/log/nginx/*.log"
+      exclude_lines: ['.*(?:server-status).*']
       fields_under_root: true
       fields:
         type: nginx-access
+      
